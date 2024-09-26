@@ -18,74 +18,74 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        // $users = [
-        //     [
-        //         'name' => 'ANGGI NOPRIALDI',
-        //         'nik' => '237210819',
-        //     ],
-        //     [
-        //         'name' => 'REDIKSON FIDELIUS NADEAK',
-        //         'nik' => '237212811',
-        //     ],
-        //     [
-        //         'name' => 'FRANSISCUS FERDIAN',
-        //         'nik' => '237214264',
-        //     ],
-        //     [
-        //         'name' => 'MUS ANGGA SAPUTRA',
-        //         'nik' => '237215704',
-        //     ],
-        // ];
+        $users = [
+            [
+                'name' => 'ANGGI NOPRIALDI',
+                'nik' => '237210819',
+            ],
+            [
+                'name' => 'REDIKSON FIDELIUS NADEAK',
+                'nik' => '237212811',
+            ],
+            [
+                'name' => 'FRANSISCUS FERDIAN',
+                'nik' => '237214264',
+            ],
+            [
+                'name' => 'MUS ANGGA SAPUTRA',
+                'nik' => '237215704',
+            ],
+        ];
 
-        // foreach ($users as $user) {
-        //     User::factory()->create($user);
-        // }
+        foreach ($users as $user) {
+            User::factory()->create($user);
+        }
 
-        // $kases = [
-        //     [
-        //         'name' => 'H2110',
-        //     ],
-        //     [
-        //         'name' => 'H2111',
-        //     ],
-        //     [
-        //         'name' => 'H2112',
-        //     ],
-        //     [
-        //         'name' => 'H2113',
-        //     ],
-        //     [
-        //         'name' => 'H2114',
-        //     ],
-        //     [
-        //         'name' => 'H2115',
-        //     ],
-        //     [
-        //         'name' => 'H2116',
-        //     ],
-        //     [
-        //         'name' => 'H2117',
-        //     ],
-        //     [
-        //         'name' => 'H2118',
-        //     ],
+        $kases = [
+            [
+                'name' => 'H2110',
+            ],
+            [
+                'name' => 'H2111',
+            ],
+            [
+                'name' => 'H2112',
+            ],
+            [
+                'name' => 'H2113',
+            ],
+            [
+                'name' => 'H2114',
+            ],
+            [
+                'name' => 'H2115',
+            ],
+            [
+                'name' => 'H2116',
+            ],
+            [
+                'name' => 'H2117',
+            ],
+            [
+                'name' => 'H2118',
+            ],
 
-        //     [
-        //         'name' => 'H2119',
-        //     ],
+            [
+                'name' => 'H2119',
+            ],
 
-        //     [
-        //         'name' => 'H2120',
-        //     ],
-        // ];
+            [
+                'name' => 'H2120',
+            ],
+        ];
 
-        // foreach ($kases as $kas) {
-        //     Kas::factory()->create($kas);
-        // }
+        foreach ($kases as $kas) {
+            Kas::factory()->create($kas);
+        }
 
-        // Branch::factory()->create([
-        //     'name' => "AIR MOLEK"
-        // ]);
+        Branch::factory()->create([
+            'name' => "AIR MOLEK"
+        ]);
 
         $placements = [
             [
