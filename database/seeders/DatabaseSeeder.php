@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Branch;
 use App\Models\Kas;
+use App\Models\Placement;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,73 +18,121 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        $users = [
+        // $users = [
+        //     [
+        //         'name' => 'ANGGI NOPRIALDI',
+        //         'nik' => '237210819',
+        //     ],
+        //     [
+        //         'name' => 'REDIKSON FIDELIUS NADEAK',
+        //         'nik' => '237212811',
+        //     ],
+        //     [
+        //         'name' => 'FRANSISCUS FERDIAN',
+        //         'nik' => '237214264',
+        //     ],
+        //     [
+        //         'name' => 'MUS ANGGA SAPUTRA',
+        //         'nik' => '237215704',
+        //     ],
+        // ];
+
+        // foreach ($users as $user) {
+        //     User::factory()->create($user);
+        // }
+
+        // $kases = [
+        //     [
+        //         'name' => 'H2110',
+        //     ],
+        //     [
+        //         'name' => 'H2111',
+        //     ],
+        //     [
+        //         'name' => 'H2112',
+        //     ],
+        //     [
+        //         'name' => 'H2113',
+        //     ],
+        //     [
+        //         'name' => 'H2114',
+        //     ],
+        //     [
+        //         'name' => 'H2115',
+        //     ],
+        //     [
+        //         'name' => 'H2116',
+        //     ],
+        //     [
+        //         'name' => 'H2117',
+        //     ],
+        //     [
+        //         'name' => 'H2118',
+        //     ],
+
+        //     [
+        //         'name' => 'H2119',
+        //     ],
+
+        //     [
+        //         'name' => 'H2120',
+        //     ],
+        // ];
+
+        // foreach ($kases as $kas) {
+        //     Kas::factory()->create($kas);
+        // }
+
+        // Branch::factory()->create([
+        //     'name' => "AIR MOLEK"
+        // ]);
+
+        $placements = [
             [
-                'name' => 'ANGGI NOPRIALDI',
-                'nik' => '237210819',
+                'id_user' => 1,
+                'id_kas' => 1,
+                'id_branch' => 1,
             ],
             [
-                'name' => 'REDIKSON FIDELIUS NADEAK',
-                'nik' => '237212811',
+                'id_user' => 1,
+                'id_kas' => 2,
+                'id_branch' => 1,
             ],
             [
-                'name' => 'FRANSISCUS FERDIAN',
-                'nik' => '237214264',
+                'id_user' => 2,
+                'id_kas' => 3,
+                'id_branch' => 1,
             ],
             [
-                'name' => 'MUS ANGGA SAPUTRA',
-                'nik' => '237215704',
+                'id_user' => 2,
+                'id_kas' => 4,
+                'id_branch' => 1,
             ],
+            [
+                'id_user' => 3,
+                'id_kas' => 5,
+                'id_branch' => 1,
+            ],
+            [
+                'id_user' => 3,
+                'id_kas' => 6,
+                'id_branch' => 1,
+            ],
+            [
+                'id_user' => 4,
+                'id_kas' => 7,
+                'id_branch' => 1,
+            ],
+            [
+                'id_user' => 4,
+                'id_kas' => 8,
+                'id_branch' => 1,
+            ],
+            // Add more placements as needed
         ];
 
-        foreach ($users as $user) {
-            User::factory()->create($user);
+        foreach ($placements as $placement) {
+            Placement::factory()->create($placement);
         }
-
-        $kases = [
-            [
-                'name' => 'H2110',
-            ],
-            [
-                'name' => 'H2111',
-            ],
-            [
-                'name' => 'H2112',
-            ],
-            [
-                'name' => 'H2113',
-            ],
-            [
-                'name' => 'H2114',
-            ],
-            [
-                'name' => 'H2115',
-            ],
-            [
-                'name' => 'H2116',
-            ],
-            [
-                'name' => 'H2117',
-            ],
-            [
-                'name' => 'H2118',
-            ],
-
-            [
-                'name' => 'H2119',
-            ],
-
-            [
-                'name' => 'H2120',
-            ],
-        ];
-
-        foreach ($kases as $kas) {
-            Kas::factory()->create($kas);
-        }
-
-        Branch::factory()->create([
-            'name' => "AIR MOLEK"
-        ]);
     }
 }
