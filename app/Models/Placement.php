@@ -18,16 +18,16 @@ class Placement extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 
     public function branch(): BelongsTo
     {
-        return $this->belongsTo(Branch::class);
+        return $this->belongsTo(Branch::class, 'id_branch', 'id');
     }
 
     public function kas(): BelongsTo
     {
-        return $this->belongsTo(Kas::class);
+        return $this->belongsTo(Kas::class, 'id_kas', 'id');
     }
 }

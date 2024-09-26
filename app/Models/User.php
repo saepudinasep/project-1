@@ -48,6 +48,6 @@ class User extends Authenticatable
 
     public function placements(): HasMany
     {
-        return $this->hasMany(Placement::class);
+        return $this->hasMany(Placement::class, 'id_user', 'id');
     }
 }
