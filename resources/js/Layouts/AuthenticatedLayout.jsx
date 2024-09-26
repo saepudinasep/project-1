@@ -30,6 +30,12 @@ export default function Authenticated({ header, children }) {
                                 >
                                     Dashboard
                                 </NavLink>
+                                <NavLink
+                                    href={route('placement.index')}
+                                    active={route().current('placement')}
+                                >
+                                    Placement
+                                </NavLink>
                             </div>
                         </div>
 
