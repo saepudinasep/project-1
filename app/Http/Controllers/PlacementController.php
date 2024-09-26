@@ -15,7 +15,6 @@ class PlacementController extends Controller
     public function index()
     {
         $placements = Placement::with(['user', 'branch', 'kas'])
-            ->where('id_user', Auth::id())
             ->paginate(10);
         return inertia('Placement/Index', [
             'placements' => $placements,
