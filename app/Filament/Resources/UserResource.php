@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\KasResource\Pages;
-use App\Filament\Resources\KasResource\RelationManagers;
-use App\Models\Kas;
+use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,10 +12,11 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
-class KasResource extends Resource
+class UserResource extends Resource
 {
-    protected static ?string $model = Kas::class;
+    protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,7 +24,7 @@ class KasResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                //
             ]);
     }
 
@@ -31,7 +32,12 @@ class KasResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('nik')
+                    ->label('NIK'),
                 Tables\Columns\TextColumn::make('name')
+                    ->label('FullName'),
+                Tables\Columns\TextColumn::make('role.name')
+                    ->label('Role'),
             ])
             ->filters([
                 //
@@ -42,7 +48,6 @@ class KasResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                    // Tables\Actions\CreateAction::make()
                 ]),
             ]);
     }
@@ -57,9 +62,14 @@ class KasResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListKas::route('/'),
-            'create' => Pages\CreateKas::route('/create'),
-            'edit' => Pages\EditKas::route('/{record}/edit'),
+            'index' => Pages\ListUsers::route('/'),
+            'create' => Pages\CreateUser::route('/create'),
+            'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return User::where('id', '!=', Auth::id());
     }
 }

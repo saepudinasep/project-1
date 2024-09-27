@@ -23,7 +23,7 @@ class BranchResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
             ]);
     }
 
@@ -31,7 +31,7 @@ class BranchResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
             ])
             ->filters([
                 //
