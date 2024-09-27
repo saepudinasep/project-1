@@ -23,6 +23,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        // Drop the roles table and all its referencing tables
+        Schema::dropIfExists('roles', [
+            'cascade' => true,
+        ]);
     }
 };
