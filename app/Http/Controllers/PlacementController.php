@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kas;
 use App\Models\Placement;
 use Illuminate\Http\Request;
 
@@ -24,8 +25,11 @@ class PlacementController extends Controller
             ->where('user_id', $id)
             ->paginate(10);
 
+        $kases = Kas::whereDoesntHave('placements')->paginate(10);
+
         return inertia('Placement/Show', [
             'placements' => $placements,
+            'kases' => $kases,
             'success' => session('success'),
         ]);
     }

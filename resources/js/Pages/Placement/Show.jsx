@@ -1,9 +1,10 @@
+import Checkbox from "@/Components/Checkbox";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 
 
 
-export default function show({ auth, placements, success }) {
+export default function show({ auth, placements, kases, success }) {
 
     return (
         <AuthenticatedLayout
@@ -26,8 +27,8 @@ export default function show({ auth, placements, success }) {
                         </div>
                     )}
 
-                    <div className="flex flex-wrap justify-center">
-                        <div className="w-full p-6">
+                    <div className="flex justify-between">
+                        <div className="w-1/2 p-6">
                             <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                                 <div className="p-6 text-gray-900 dark:text-gray-100">
                                     <div className="overflow-auto">
@@ -50,7 +51,9 @@ export default function show({ auth, placements, success }) {
                                                             </Link>
                                                         </td>
                                                         <td className="px-3 py-2">{placement.kas.name}</td>
-                                                        <td className="px-3 py-2">Action</td>
+                                                        <td className="px-3 py-2">
+                                                            <Checkbox value={placement.id} />
+                                                        </td>
                                                     </tr>
                                                 ))}
                                             </tbody>
@@ -59,15 +62,18 @@ export default function show({ auth, placements, success }) {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full p-6 text-center">
-                            <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mx-2">
+                        <div className="w-1/3 p-6 flex flex-col justify-center items-center">
+                            {/* <div className="flex flex-col justify-center"> */}
+                            <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mx-2 mb-2">
+                                {/* <i className="fas fa-plus mr-2"></i> */}
                                 Add New
                             </button>
                             <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mx-2">
                                 Delete
                             </button>
+                            {/* </div> */}
                         </div>
-                        <div className="w-full p-6">
+                        <div className="w-1/2 p-6">
                             <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                                 <div className="p-6 text-gray-900 dark:text-gray-100">
                                     <div className="overflow-auto">
@@ -75,22 +81,18 @@ export default function show({ auth, placements, success }) {
                                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
                                                 <tr className="text-nowrap">
                                                     <th className="px-3 py-3">ID</th>
-                                                    <th className="px-3 py-3">Branch Name</th>
                                                     <th className="px-3 py-3">Kas Kode</th>
                                                     <th className="px-3 py-3">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {placements.data.map((placement) => (
-                                                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={placement.id}>
-                                                        <td className="px-3 py-2">{placement.id}</td>
+                                                {kases.data.map((kas) => (
+                                                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={kas.id}>
+                                                        <td className="px-3 py-2">{kas.id}</td>
+                                                        <td className="px-3 py-2">{kas.name}</td>
                                                         <td className="px-3 py-2">
-                                                            <Link href={route("placement.show", placement.branch.id)} >
-                                                                {placement.branch.name}
-                                                            </Link>
+                                                            <Checkbox value={kas.id} />
                                                         </td>
-                                                        <td className="px-3 py-2">{placement.kas.name}</td>
-                                                        <td className="px-3 py-2">Action</td>
                                                     </tr>
                                                 ))}
                                             </tbody>
