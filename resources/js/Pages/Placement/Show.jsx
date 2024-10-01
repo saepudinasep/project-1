@@ -1,10 +1,81 @@
 import Checkbox from "@/Components/Checkbox";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
-
-
+import { useState } from "react";
+import axios from 'axios';
 
 export default function show({ auth, placements, kases, success }) {
+
+    const [selectedPlacements, setSelectedPlacements] = useState([]);
+    const [selectedKases, setSelectedKases] = useState([]);
+
+    const handleAddNew = () => {
+        const newPlacements = selectedPlacements.map((id) => {
+            return { id, type: 'placement' };
+        });
+        const newKases = selectedKases.map((id) => {
+            return { id, type: 'kas' };
+        });
+        const newData = [...newPlacements, ...newKases];
+
+        // data gak kekirim ke controller
+        axios.post('/new-data', { data: newData })
+            .then((response) => {
+                console.log(response.data);
+                window.location.reload();
+            })
+            .catch((error) => {
+                if (error.response) {
+                    console.error('Error response:', error.response.data);
+                    console.error('Error status:', error.response.status);
+                    console.error('Error headers:', error.response.headers);
+                } else if (error.request) {
+                    console.error('Error request:', error.request);
+                } else {
+                    console.error('Error message:', error.message);
+                }
+                console.error('Error config:', error.config);
+            });
+    };
+
+    const handleDelete = () => {
+        // Fungsi untuk menghapus data yang dipilih
+        const deletedPlacements = selectedPlacements.map((id) => {
+            return { id, type: 'placement' };
+        });
+        const deletedKases = selectedKases.map((id) => {
+            return { id, type: 'kas' };
+        });
+        const deletedData = [...deletedPlacements, ...deletedKases];
+
+        // console.log(deletedData);
+        // Kirim data ke server untuk dihapus
+        // Anda dapat menggunakan axios atau fetch untuk mengirim data ke server
+        // Contoh:
+        axios.delete('/delete-data', { data: deletedData })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const handleCheckboxChange = (id, type) => {
+        if (type === 'placement') {
+            if (selectedPlacements.includes(id)) {
+                setSelectedPlacements(selectedPlacements.filter((selectedId) => selectedId !== id));
+            } else {
+                setSelectedPlacements([...selectedPlacements, id]);
+            }
+        } else if (type === 'kas') {
+            if (selectedKases.includes(id)) {
+                setSelectedKases(selectedKases.filter((selectedId) => selectedId !== id));
+            } else {
+                setSelectedKases([...selectedKases, id]);
+            }
+        }
+    };
 
     return (
         <AuthenticatedLayout
@@ -51,8 +122,14 @@ export default function show({ auth, placements, kases, success }) {
                                                             </Link>
                                                         </td>
                                                         <td className="px-3 py-2">{placement.kas.name}</td>
-                                                        <td className="px-3 py-2">
+                                                        {/* <td className="px-3 py-2">
                                                             <Checkbox value={placement.id} />
+                                                        </td> */}
+                                                        <td className="px-3 py-2">
+                                                            <Checkbox
+                                                                value={placement.id}
+                                                                onChange={() => handleCheckboxChange(placement.id, 'placement')}
+                                                            />
                                                         </td>
                                                     </tr>
                                                 ))}
@@ -63,15 +140,25 @@ export default function show({ auth, placements, kases, success }) {
                             </div>
                         </div>
                         <div className="w-1/3 p-6 flex flex-col justify-center items-center">
-                            {/* <div className="flex flex-col justify-center"> */}
-                            <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mx-2 mb-2">
-                                {/* <i className="fas fa-plus mr-2"></i> */}
+                            {/* <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mx-2 mb-2">
                                 Add New
                             </button>
                             <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mx-2">
                                 Delete
+                            </button> */}
+                            <button
+                                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mx-2 mb-2"
+                                onClick={handleAddNew}
+                            >
+                                Add New
                             </button>
-                            {/* </div> */}
+
+                            <button
+                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mx-2"
+                                onClick={handleDelete}
+                            >
+                                Delete
+                            </button>
                         </div>
                         <div className="w-1/2 p-6">
                             <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -90,8 +177,14 @@ export default function show({ auth, placements, kases, success }) {
                                                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={kas.id}>
                                                         <td className="px-3 py-2">{kas.id}</td>
                                                         <td className="px-3 py-2">{kas.name}</td>
-                                                        <td className="px-3 py-2">
+                                                        {/* <td className="px-3 py-2">
                                                             <Checkbox value={kas.id} />
+                                                        </td> */}
+                                                        <td className="px-3 py-2">
+                                                            <Checkbox
+                                                                value={kas.id}
+                                                                onChange={() => handleCheckboxChange(kas.id, 'kas')}
+                                                            />
                                                         </td>
                                                     </tr>
                                                 ))}

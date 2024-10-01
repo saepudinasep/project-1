@@ -19,5 +19,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('placement', PlacementController::class);
 });
+Route::post('/new-data', [PlacementController::class, 'store']);
+Route::delete('/delete-data', [PlacementController::class, 'destroy']);
 
 require __DIR__ . '/auth.php';
